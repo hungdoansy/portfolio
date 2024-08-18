@@ -1,0 +1,17 @@
+{
+    "prettier.requireConfig": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "editor.tabSize": 4,
+    "javascript.preferences.importModuleSpecifier": "non-relative",
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "files.associations": {
+        "*.xml": "html",
+        "*.svg": "html"
+    },
+    "editor.linkedEditing": false
+}

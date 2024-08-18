@@ -1,7 +1,5 @@
 module.exports = {
-    // this line is required for pnpm
-    plugins: [require.resolve("@trivago/prettier-plugin-sort-imports")],
-
+    plugins: ["@trivago/prettier-plugin-sort-imports"],
     semi: false,
     tabWidth: 4,
     printWidth: 120,
@@ -23,7 +21,12 @@ module.exports = {
             },
         },
     ],
-    importOrder: ["<THIRD_PARTY_MODULES>", "^@/(assets|components|core|pages|theme|types|utils)(/.+)?$", "^[./]"],
+    importOrder: [
+        "<THIRD_PARTY_MODULES>",
+        "^@/(app|assets|components|constants|domains|hooks|lib|packages|requests|store|types)(/.+)?$",
+        "\\.(c|le|sc)ss$",
+        "^[./]",
+    ],
     importOrderSeparation: true,
     importOrderSortSpecifiers: true,
 }

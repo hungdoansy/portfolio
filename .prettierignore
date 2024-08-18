@@ -1,4 +1,4 @@
-/node_modules
+node_modules
 
 # next.js
 /.next
@@ -6,6 +6,10 @@
 
 # production
 /build
+/dist
 
 # pnpm
 pnpm-lock.yaml
+
+# npm
+package-lock.json

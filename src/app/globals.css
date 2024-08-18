@@ -16,9 +16,9 @@
     --contrast-medium: #737678;
     --contrast-high: #323639;
     --contrast-higher: #0d1317;
-    --emphasis-low: rgba(13,19,23,.18);
-    --emphasis-medium: rgba(13,19,23,.12);
-    --emphasis-high: rgba(13,19,23,.06);
+    --emphasis-low: rgba(13, 19, 23, 0.18);
+    --emphasis-medium: rgba(13, 19, 23, 0.12);
+    --emphasis-high: rgba(13, 19, 23, 0.06);
     --primary-lighter: #7dd3fc;
     --primary-light: #38bdf8;
     --primary: #0ea5e9;
@@ -46,10 +46,10 @@
     --error-darker: #b70b3e;
     --hover: var(--accent);
     --selection: var(--accent-light);
-    --font-sans: -apple-system,system-ui,BlinkMacSystemFont,"Helvetica Neue","Helvetica",sans-serif;
+    --font-sans: -apple-system, system-ui, BlinkMacSystemFont, "Helvetica Neue", "Helvetica", sans-serif;
 }
 
-[data-theme=dark] {
+[data-theme="dark"] {
     --bg-light: #212528;
     --bg-lighter: #1b1f21;
     --bg: #14171a;
@@ -61,9 +61,9 @@
     --contrast-medium: #7b7d82;
     --contrast-high: #c5c6cb;
     --contrast-higher: #f9f9ff;
-    --emphasis-low: rgba(249,249,255,.18);
-    --emphasis-medium: rgba(249,249,255,.12);
-    --emphasis-high: rgba(249,249,255,.06);
+    --emphasis-low: rgba(249, 249, 255, 0.18);
+    --emphasis-medium: rgba(249, 249, 255, 0.12);
+    --emphasis-high: rgba(249, 249, 255, 0.06);
     --primary-lighter: #fcd34d;
     --primary-light: #fbbf24;
     --primary: #f59e0b;
