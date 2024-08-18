@@ -23,7 +23,7 @@ module.exports = {
     ],
     importOrder: [
         "<THIRD_PARTY_MODULES>",
-        "^@/(app|assets|components|constants|domains|hooks|lib|packages|requests|store|types)(/.+)?$",
+        "^@/(app|assets|components|configs|constants|domains|hooks|lib|packages|requests|store|types)(/.+)?$",
         "\\.(c|le|sc)ss$",
         "^[./]",
     ],
