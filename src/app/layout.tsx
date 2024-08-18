@@ -1,10 +1,14 @@
 import type { Metadata } from "next"
 
+import PageBody from "@/components/PageLayout/PageBody"
+import PageFooter from "@/components/PageLayout/PageFooter"
+import PageHeader from "@/components/PageLayout/PageHeader"
+
 import "./globals.css"
 
 export const metadata: Metadata = {
-    title: "Hung Doan",
-    description: "A regular frontend developer",
+    title: "hungdoan.xyz",
+    description: "Site of a regular frontend developer",
     icons: "/favicon.svg",
 }
 
@@ -21,7 +25,11 @@ export default function RootLayout({
                 colorScheme: "dark",
             }}
         >
-            <body>{children}</body>
+            <body>
+                <PageHeader />
+                <PageBody>{children}</PageBody>
+                <PageFooter />
+            </body>
         </html>
     )
 }

@@ -136,3 +136,47 @@ body {
 .text-contrast-low {
     color: var(--contrast-low);
 }
+
+.pageHeader {
+    height: 4rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #f3f4f6;
+    font-weight: 700;
+}
+
+.current {
+    color: #64748b;
+}
+
+@keyframes blinking {
+    50% {
+        opacity: 0;
+    }
+}
+
+.indicator {
+    animation: blinking 1s infinite;
+    font-size: 18px;
+}
+
+.groups {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+[data-theme="dark"] .pageHeader {
+    background: #22223b;
+}
+
+[data-theme="dark"] .rootLink {
+    color: #eeeeee;
+}
+
+[data-theme="dark"] .current {
+    color: #adb5bd;
+}
