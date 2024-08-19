@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 
-import PageBody from "@/components/PageLayout/PageBody"
-import PageFooter from "@/components/PageLayout/PageFooter"
-import PageHeader from "@/components/PageLayout/PageHeader"
+import PageBody from "@/components/layout/PageBody"
+import PageFooter from "@/components/layout/PageFooter"
+import PageHeader from "@/components/layout/PageHeader"
 
 import "./globals.css"
 
