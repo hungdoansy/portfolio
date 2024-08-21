@@ -1,5 +1,3 @@
-import { GetStaticPaths } from "next"
-
 import { Article } from "@/components/Article"
 import BlogLayout from "@/components/layout/BlogPost"
 import getOgImage from "@/lib/generate-opengraph-images"
@@ -21,15 +19,8 @@ export default async function BlogPost({ params: { slug } }: { params: { slug: s
     )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const generateStaticParams = async () => {
     const posts = await getFiles()
 
-    return {
-        paths: posts.map((p) => ({
-            params: {
-                slug: p.replace(/\.mdx/, ""),
-            },
-        })),
-        fallback: true,
-    }
+    return posts.map((p) => p.replace(/\.mdx/, ""))
 }
