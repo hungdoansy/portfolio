@@ -64,6 +64,7 @@ const config = {
             },
             fontFamily: {
                 biotif: ["Biotif", "sans-serif"],
+                noto: ['"Noto Sans"', "sans-serif"],
             },
         },
     },
