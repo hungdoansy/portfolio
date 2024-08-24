@@ -7,7 +7,7 @@
 @layer base {
     :root {
         --header: hsla(209.01, 100%, 99%, 0.4);
-        --background: hsl(0 0% 100%);
+        --background: hsl(209.01 100% 99%);
         --foreground: hsl(222.2 84% 4.9%);
         --card: hsl(0 0% 100%);
         --card-foreground: hsl(222.2 84% 4.9%);
@@ -31,7 +31,7 @@
 
     .dark {
         --header: hsla(221.77, 27%, 5%, 0.4);
-        --background: hsl(222.2 84% 4.9%);
+        --background: hsl(221.77 27% 5%);
         --foreground: hsl(210 40% 98%);
         --card: hsl(222.2 84% 4.9%);
         --card-foreground: hsl(210 40% 98%);
