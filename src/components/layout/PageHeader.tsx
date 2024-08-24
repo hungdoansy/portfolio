@@ -33,7 +33,7 @@ const PageHeader: React.FC = () => {
         <Tooltip.Provider>
             <header
                 className={cn(
-                    "w-full flex justify-center bg-background fixed top-0 left-0 z-10 text-white",
+                    "w-full flex justify-center bg-header fixed top-0 left-0 z-10 text-primary backdrop-blur",
                     reached ? "border-b" : ""
                 )}
             >

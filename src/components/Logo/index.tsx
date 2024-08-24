@@ -18,7 +18,7 @@ const Logo = ({ alt, size }: LogoProps) => (
         viewBox="0 0 600 500"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
-        stroke="black"
+        stroke="var(--primary)"
     >
         <rect x="379.447" y="43.748" width="172.095" height="418.666" rx="86.0473" strokeWidth={30} />
         <path
