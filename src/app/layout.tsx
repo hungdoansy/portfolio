@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 
+import { ThemeProvider } from "@/components/ThemeProvider"
 import PageBody from "@/components/layout/PageBody"
 import PageFooter from "@/components/layout/PageFooter"
 import PageHeader from "@/components/layout/PageHeader"
@@ -18,17 +19,13 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <html
-            lang="en"
-            data-theme="dark"
-            style={{
-                colorScheme: "dark",
-            }}
-        >
+        <html lang="en" suppressHydrationWarning>
             <body>
-                <PageHeader />
-                <PageBody>{children}</PageBody>
-                <PageFooter />
+                <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
+                    <PageHeader />
+                    <PageBody>{children}</PageBody>
+                    <PageFooter />
+                </ThemeProvider>
             </body>
         </html>
     )

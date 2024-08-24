@@ -33,7 +33,7 @@ const PageHeader: React.FC = () => {
         <Tooltip.Provider>
             <header
                 className={cn(
-                    "w-full flex justify-center bg-muted-foreground fixed top-0 left-0 z-10",
+                    "w-full flex justify-center bg-background fixed top-0 left-0 z-10 text-white",
                     reached ? "border-b" : ""
                 )}
             >
@@ -51,7 +51,7 @@ const PageHeader: React.FC = () => {
                         </div>
 
                         <div className="flex items-center gap-3">
-                            <CommandCenterButton isSearchShown={isSearchOpen} onClick={() => setIsSearchOpen(true)} />
+                            <CommandCenterButton />
                             <LightDarkSwitcher />
                         </div>
                     </div>
