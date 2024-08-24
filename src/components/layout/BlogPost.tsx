@@ -54,7 +54,7 @@ const BlogLayout = ({ children, frontMatter, ogImage }: Props) => {
     return (
         <article className="w-full flex justify-center">
             <PageContainer className="flex flex-col gap-8">
-                <Link href="/">
+                <Link href="/" className="w-fit flex items-center text-sm group text-secondary hover:text-accent">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -65,19 +65,26 @@ const BlogLayout = ({ children, frontMatter, ogImage }: Props) => {
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
+                        className="w-4 h-4 flex-none transition-transform group-hover:-translate-x-1 mr-1"
                     >
                         <path d="m12 19-7-7 7-7" />
                         <path d="M19 12H5" />
                     </svg>
-                    Home
+                    <span>Home</span>
                 </Link>
 
-                <h1>{title}</h1>
+                <h1 className="font-semibold text-4xl text-primary">{title}</h1>
 
-                <div className="flex items-center gap-2">
-                    <span>
+                <div className="flex items-center justify-between gap-2 text-sm">
+                    <span className="flex-none whitespace-nowrap">
                         {format(new Date(Date.parse(date)), "MMMM d, yyyy")} / {readingTime.text}
                     </span>
+
+                    {updated && (
+                        <span className="text-accent leading-none px-2 pt-[5px] pb-[4px] bg-emphasis rounded-sm">
+                            Last updated: {format(new Date(Date.parse(updated)), "MMMM d, yyyy")}
+                        </span>
+                    )}
                 </div>
 
                 <div className={cn("flex flex-col", contentClass())}>{children}</div>

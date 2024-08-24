@@ -47,6 +47,12 @@ const config = {
                     DEFAULT: "var(--card)",
                     foreground: "var(--card-foreground)",
                 },
+                content: {
+                    DEFAULT: "var(--content)",
+                },
+                emphasis: {
+                    DEFAULT: "var(--emphasis)",
+                },
             },
             keyframes: {
                 "accordion-down": {
