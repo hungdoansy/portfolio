@@ -1,8 +1,10 @@
 "use client"
 
 import { NextPage } from "next"
-import Head from "next/head"
 import Link from "next/link"
+
+import PageContainer from "@/components/layout/PageContainer"
+import { Button } from "@/components/ui/button"
 
 const GithubSVG = () => {
     return (
@@ -72,26 +74,34 @@ const FileSVG = () => {
 
 const HomePage: NextPage = () => {
     return (
-        <>
-            <Head>
-                <title>/home/hung</title>
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+        <div className="w-full flex flex-col items-center">
+            <PageContainer className="flex flex-col gap-6">
+                <h1 className="text-4xl font-semibold">Hello 👋 I&apos;m Hùng.</h1>
 
-            <div className="github-theme">
-                <p>Hello! I&apos;m Hung. Welcome to my space on the internet!</p>
-                <p>
-                    I&apos;m a simple & regular FrontEnd Developer. I&apos;m working remotely for a company in Hong
-                    Kong.
-                </p>
-                <p>I live with my wife and a toothless lad in Hanoi, Vietnam.</p>
-                <p>This is where I noted down interesting (boring and weird at times) stuff.</p>
+                <h1 className="text-4xl font-semibold">
+                    This is my blog where I share my experience as a regular frontend developer.
+                </h1>
 
-                <h2>Contact</h2>
-                <p>In case you&apos;re interested:</p>
-                <ul style={{ listStyle: "none" }}>
+                <h2 className="text-2xl text-secondary">
+                    I&apos;m a simple & regular FrontEnd Developer. I&apos;m working remotely for YoloLabs in Hong Kong.
+                    I live with my wife and a toothless lad in Hanoi, Vietnam.
+                </h2>
+
+                <div className="w-full flex items-center gap-4">
+                    <Button asChild>
+                        <Link href="https://github.com/hungdoansy">
+                            Github <GithubSVG />
+                        </Link>
+                    </Button>
+
+                    <Button>
+                        LinkedIn <EmailSVG />
+                    </Button>
+                </div>
+
+                <ul className="hidden">
                     <li>
-                        -&gt; <Link href="https://github.com/hungdoansy">Find me on GitHub</Link> <GithubSVG />
+                        -&gt; <Link href="https://github.com/hungdoansy">Find me on GitHub</Link>
                     </li>
                     <li>
                         -&gt; <Link href="mailto:hungdoansy@gmail.com">Contact me</Link> <EmailSVG />
@@ -100,20 +110,8 @@ const HomePage: NextPage = () => {
                         -&gt; <Link href="/cv">My CV</Link> <FileSVG />
                     </li>
                 </ul>
-
-                <h2>
-                    <Link href="/notes">Notes</Link>
-                </h2>
-                <p>Some of my recent notes</p>
-                <ul>
-                    <li>1</li>
-                    <li>2</li>
-                </ul>
-
-                <h2>P/S</h2>
-                <p>This website was inspired by huytd</p>
-            </div>
-        </>
+            </PageContainer>
+        </div>
     )
 }
 
