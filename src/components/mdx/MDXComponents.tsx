@@ -1,10 +1,11 @@
 "use client"
 
-import { Blockquote, Button, Card, Details, InlineCode, List, Pill } from "@maximeheckel/design-system"
+import { Blockquote, Button, Card, Details, List, Pill } from "@maximeheckel/design-system"
 import { MDXRemoteProps } from "next-mdx-remote"
 import Image from "next/image"
 
 import Code from "@/components/Code"
+import { InlineCode } from "@/components/mdx/code"
 
 import { Anchor, EM, H1, H2, H3, Paragraph } from "./typography"
 
