@@ -62,8 +62,13 @@
     * {
         @apply border-border;
     }
+
     body {
-        @apply min-h-screen flex flex-col bg-background text-content font-biotif;
+        @apply min-h-screen flex flex-col bg-background text-content font-biotif break-words;
+    }
+
+    p {
+        text-rendering: optimizelegibility;
     }
 
     .button-icon {

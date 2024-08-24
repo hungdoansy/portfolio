@@ -4,6 +4,7 @@ import { NextPage } from "next"
 import Link from "next/link"
 
 import PageContainer from "@/components/layout/PageContainer"
+import { Anchor, H1, Paragraph } from "@/components/mdx/typography"
 import { Button } from "@/components/ui/button"
 
 const GithubSVG = () => {
@@ -76,16 +77,17 @@ const HomePage: NextPage = () => {
     return (
         <div className="w-full flex flex-col items-center">
             <PageContainer className="flex flex-col gap-6">
-                <h1 className="text-4xl font-semibold">Hello 👋 I&apos;m Hùng.</h1>
+                <H1 className="text-4xl font-semibold">Hello 👋 I&apos;m Hùng.</H1>
 
-                <h1 className="text-4xl font-semibold">
-                    This is my blog where I share my experience as a regular frontend developer.
-                </h1>
+                <Paragraph className="text-2xl text-secondary">
+                    I&apos;m a simple & regular FrontEnd Developer. I&apos;m working remotely for{" "}
+                    <Anchor href="https://www.yololab.io/">YoloLabs</Anchor>. I live with my wife and a gumsy dude in
+                    Hanoi, Vietnam.
+                </Paragraph>
 
-                <h2 className="text-2xl text-secondary">
-                    I&apos;m a simple & regular FrontEnd Developer. I&apos;m working remotely for YoloLabs in Hong Kong.
-                    I live with my wife and a toothless lad in Hanoi, Vietnam.
-                </h2>
+                <Paragraph className="text-2xl text-secondary">
+                    This is my blog where I share my experience from POV of a frontend developer.
+                </Paragraph>
 
                 <div className="w-full flex items-center gap-4">
                     <Button asChild>

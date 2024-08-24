@@ -1,39 +1,26 @@
 "use client"
 
-import {
-    Anchor,
-    Blockquote,
-    Button,
-    Card,
-    Details,
-    EM,
-    H2,
-    H3,
-    InlineCode,
-    List,
-    Pill,
-    Strong,
-    Text,
-} from "@maximeheckel/design-system"
+import { Blockquote, Button, Card, Details, InlineCode, List, Pill } from "@maximeheckel/design-system"
+import { MDXRemoteProps } from "next-mdx-remote"
 import Image from "next/image"
 
 import Code from "@/components/Code"
+
+import { Anchor, EM, H1, H2, H3, Paragraph } from "./typography"
 
 const customComponents = {
     Card,
     CardBody: Card.Body,
 }
 
-const MDXComponents = {
+const MDXComponents: MDXRemoteProps["components"] = {
     // Replace the default anchor tag by the Anchor component with underline set to true: this is the default link
-    a: function A(props: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
-        return <Anchor underline {...props} />
-    },
-    Anchor,
+    a: Anchor,
     Button,
     blockquote: Blockquote,
     Details,
     em: EM,
+    h1: H1,
     h2: H2,
     h3: H3,
     Image,
@@ -42,12 +29,10 @@ const MDXComponents = {
     ol: function OL(props: React.OlHTMLAttributes<HTMLOListElement>) {
         return <List variant="ordered" {...props} />
     },
-    p: function P(props: React.HTMLAttributes<HTMLParagraphElement>) {
-        return <Text as="p" {...props} />
-    },
+    p: Paragraph,
     Pill,
     pre: Code,
-    strong: Strong,
+    // strong: Strong,
     ul: function UL(props: React.HTMLAttributes<HTMLUListElement>) {
         return <List variant="unordered" {...props} />
     },
