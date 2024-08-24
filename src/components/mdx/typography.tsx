@@ -48,10 +48,11 @@ export function H4({ className, children, ...props }: HeadingProps) {
 
 type AnchorProps = React.AnchorHTMLAttributes<HTMLAnchorElement>
 export function Anchor({ className, href = "#", children, ...props }: AnchorProps) {
+    const target = isExternalLink(href) ? "_blank" : undefined
     return (
         <Link
             className={cn("border-b border-border transition-colors duration-300 hover:border-accent", className)}
-            target={isExternalLink(href) ? "_blank" : undefined}
+            target={target}
             href={href}
             {...props}
         >
