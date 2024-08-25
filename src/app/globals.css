@@ -93,6 +93,46 @@
         box-shadow: 0 2px 40px -4px var(--accent);
         border-radius: 10px;
     }
+
+    article ul {
+        list-style-type: none;
+    }
+
+    article ol {
+        counter-reset: count;
+    }
+
+    article ol > li {
+        counter-increment: "count";
+    }
+
+    article ol > li::before {
+        counter-increment: count;
+        content: counter(count) ". ";
+        color: var(--accent);
+        margin-right: 6px;
+    }
+
+    article ol > li > span[data-list-item] {
+        display: none;
+    }
+
+    article li > span[data-list-item] {
+        padding-right: 6px;
+        transform: translateY(3px);
+    }
+
+    article li > ol {
+        margin-left: 1.45rem;
+    }
+
+    article li > ul {
+        margin-left: 1.45rem;
+    }
+
+    article li > p {
+        margin-bottom: calc(1.45rem / 2);
+    }
 }
 
 @layer utilities {

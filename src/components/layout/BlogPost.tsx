@@ -1,6 +1,5 @@
 "use client"
 
-import { css } from "@maximeheckel/design-system"
 import { format } from "date-fns"
 import Link from "next/link"
 import React from "react"
@@ -16,35 +15,6 @@ interface Props {
     frontMatter: Post & { readingTime: ReadingTime }
     ogImage: string
 }
-
-const contentClass = css({
-    padding: "var(--space-5) 0px",
-    color: "var(--text-secondary)",
-
-    h2: {
-        marginTop: "2em",
-    },
-
-    h3: {
-        marginTop: "1.45em",
-    },
-
-    p: {
-        fontWeight: "440",
-    },
-
-    li: {
-        fontWeight: "440",
-    },
-
-    section: {
-        display: "flex",
-        flexDirection: "column",
-        gap: "var(--space-5)",
-        maxWidth: 700,
-        width: "100%",
-    },
-})
 
 const BlogLayout = ({ children, frontMatter, ogImage }: Props) => {
     const { date, updated, slug, subtitle, title, readingTime } = frontMatter
@@ -87,7 +57,7 @@ const BlogLayout = ({ children, frontMatter, ogImage }: Props) => {
                     )}
                 </div>
 
-                <div className={cn("flex flex-col", contentClass())}>{children}</div>
+                <div className={cn("flex flex-col gap-6")}>{children}</div>
             </PageContainer>
         </article>
     )

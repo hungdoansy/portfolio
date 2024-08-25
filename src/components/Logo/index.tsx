@@ -1,10 +1,3 @@
-import { css } from "@maximeheckel/design-system"
-
-const transitionLogo = css({
-    transition: "0.5s",
-    willChange: "stroke, fill",
-})
-
 interface LogoProps {
     alt?: string
     size?: number
@@ -13,7 +6,7 @@ interface LogoProps {
 const Logo = ({ alt, size }: LogoProps) => (
     <svg
         aria-label={alt}
-        className={transitionLogo()}
+        className="duration-500 will-change-[stroke,fill]"
         width={size || 44}
         viewBox="0 0 600 500"
         xmlns="http://www.w3.org/2000/svg"

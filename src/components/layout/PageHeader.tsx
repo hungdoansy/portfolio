@@ -1,6 +1,5 @@
 "use client"
 
-import { Tooltip } from "@maximeheckel/design-system"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { useState } from "react"
@@ -30,37 +29,35 @@ const PageHeader: React.FC = () => {
     const [isSearchOpen, setIsSearchOpen] = useState(false)
 
     return (
-        <Tooltip.Provider>
-            <header
-                className={cn(
-                    "w-full flex justify-center bg-header fixed top-0 left-0 z-10 text-primary backdrop-blur",
-                    reached ? "border-b" : ""
-                )}
+        <header
+            className={cn(
+                "w-full flex justify-center bg-header fixed top-0 left-0 z-10 text-primary backdrop-blur",
+                reached ? "border-b" : ""
+            )}
+        >
+            <motion.div
+                initial="open"
+                animate={reached ? "collapsed" : "open"}
+                variants={headerVariants}
+                className={cn("w-full flex items-center justify-between max-w-[840px]")}
             >
-                <motion.div
-                    initial="open"
-                    animate={reached ? "collapsed" : "open"}
-                    variants={headerVariants}
-                    className={cn("w-full flex items-center justify-between max-w-[840px]")}
-                >
-                    <div className="w-full flex items-center justify-between">
-                        <div className="flex items-center">
-                            <Link aria-label="Home" aria-describedby="home" href="/">
-                                <Logo alt="Logo" size={40} />
-                            </Link>
-                        </div>
-
-                        <div className="flex items-center gap-3">
-                            <CommandCenterButton />
-                            <LightDarkSwitcher />
-                        </div>
+                <div className="w-full flex items-center justify-between">
+                    <div className="flex items-center">
+                        <Link aria-label="Home" aria-describedby="home" href="/">
+                            <Logo alt="Logo" size={40} />
+                        </Link>
                     </div>
-                    {/* {showProgressBarOnMobile ? (
+
+                    <div className="flex items-center gap-3">
+                        <CommandCenterButton />
+                        <LightDarkSwitcher />
+                    </div>
+                </div>
+                {/* {showProgressBarOnMobile ? (
                         <HeaderProgressBar css={{ "--progress": `${readingProgress * 100}%` }} />
                     ) : null} */}
-                </motion.div>
-            </header>
-        </Tooltip.Provider>
+            </motion.div>
+        </header>
     )
 }
 
