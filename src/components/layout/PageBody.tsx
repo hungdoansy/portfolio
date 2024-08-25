@@ -1,5 +1,5 @@
 const PageBody = ({ children }: React.PropsWithChildren) => {
-    return <main className="w-full min-h-full flex-1 mt-8 mb-8 pt-48">{children}</main>
+    return <main className="px-4 w-full min-h-full flex-1 mt-8 mb-8 pt-48">{children}</main>
 }
 
 export default PageBody

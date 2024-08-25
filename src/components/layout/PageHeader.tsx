@@ -39,12 +39,12 @@ const PageHeader: React.FC = () => {
                 initial="open"
                 animate={reached ? "collapsed" : "open"}
                 variants={headerVariants}
-                className={cn("w-full flex items-center justify-between max-w-[840px]")}
+                className={cn("px-4 w-full flex items-center justify-between max-w-[840px]")}
             >
                 <div className="w-full flex items-center justify-between">
                     <div className="flex items-center">
                         <Link aria-label="Home" aria-describedby="home" href="/">
-                            <Logo alt="Logo" size={40} />
+                            <Logo />
                         </Link>
                     </div>
 

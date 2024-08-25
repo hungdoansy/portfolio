@@ -5,7 +5,6 @@ import Link from "next/link"
 import React from "react"
 
 import PageContainer from "@/components/layout/PageContainer"
-import siteConfig from "@/configs/site"
 import { getPostURL } from "@/lib/routes"
 import { cn } from "@/lib/utils"
 import { Post, ReadingTime } from "@/types/posts"
@@ -19,7 +18,6 @@ interface Props {
 const BlogLayout = ({ children, frontMatter, ogImage }: Props) => {
     const { date, updated, slug, subtitle, title, readingTime } = frontMatter
     const path = getPostURL(slug)
-    const postUrl = `${siteConfig.url}${path}`
 
     return (
         <article className="w-full flex justify-center">

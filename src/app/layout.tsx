@@ -10,7 +10,7 @@ import "./globals.css"
 export const metadata: Metadata = {
     title: "hungdoan.xyz",
     description: "Site of a regular frontend developer",
-    icons: "/favicon.svg",
+    icons: "/favicon.ico",
 }
 
 export default function RootLayout({
