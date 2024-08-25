@@ -25,7 +25,7 @@ export default async function HomePage() {
                     This is my blog where I share my experience from POV of a frontend developer.
                 </Paragraph>
 
-                <div className="w-full flex items-center gap-4">
+                <div className="hidden w-full flex items-center gap-4">
                     <Button asChild>
                         <Link href="https://github.com/hungdoansy">
                             Github <GithubSVG />
