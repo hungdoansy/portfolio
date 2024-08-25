@@ -46,12 +46,12 @@ export const getFileBySlug = async (slug: string): Promise<FrontMatterPost> => {
 }
 
 export const getAllFilesFrontMatter = async (): Promise<Array<Post>> => {
-    const files = fs.readdirSync(path.join(root, "content"))
+    const files = fs.readdirSync(path.join(root, "contents"))
 
     const posts = files
         .filter((file) => file.endsWith(".mdx"))
         .map((postSlug: string) => {
-            const source = fs.readFileSync(path.join(root, "content", postSlug), "utf8")
+            const source = fs.readFileSync(path.join(root, "contents", postSlug), "utf8")
             const parsedFile = matter(source)
 
             return parsedFile.data as Post
@@ -59,4 +59,24 @@ export const getAllFilesFrontMatter = async (): Promise<Array<Post>> => {
         .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
 
     return posts
+}
+
+export const groupPostsByYear = async () => {
+    const posts = await getAllFilesFrontMatter()
+
+    const groupedPosts = posts.reduce((group, post) => {
+        const year = post.date.slice(0, 4)
+        if (!group[year]) {
+            group[year] = []
+        }
+
+        group[year].push(post)
+        return group
+    }, {} as Record<string, Post[]>)
+
+    const years = [...Object.keys(groupedPosts)].map((key) => Number(key)).sort((a, b) => b - a)
+    return years.map((year) => ({
+        year,
+        posts: groupedPosts[year],
+    }))
 }
