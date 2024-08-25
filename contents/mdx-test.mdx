@@ -23,7 +23,28 @@ _emphasis text_
 
 [_some_ link](https://r3f.maximeheckel.com)
 
-```javascript
-var s = "JavaScript syntax highlighting"
-alert(s)
+```jsx {9-10} title=Basic definition of a React Three Fiber mesh
+import { Canvas } from "@react-three/fiber"
+import { useRef } from "react"
+
+const Cube = () => {
+    const mesh = useRef()
+
+    return (
+        <mesh ref={mesh}>
+            <boxGeometry args={[1, 1, 1]} />
+            <meshBasicMaterial color={0xffffff} /> <meshBasicMaterial color={0xffffff} /> <meshBasicMaterial
+                color={0xffffff}
+            /> <meshBasicMaterial color={0xffffff} /> <meshBasicMaterial color={0xffffff} /> <meshBasicMaterial color={0xffffff} />
+        </mesh>
+    )
+}
+
+const Scene = () => {
+    return (
+        <Canvas>
+            <Cube />
+        </Canvas>
+    )
+}
 ```

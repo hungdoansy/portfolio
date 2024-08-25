@@ -1,7 +1,10 @@
-import { Card, styled } from "@maximeheckel/design-system"
+import { useTheme } from "next-themes"
 import Highlight, { Prism, defaultProps } from "prism-react-renderer"
+import vsDark from "prism-react-renderer/themes/vsDark"
+import vsLight from "prism-react-renderer/themes/vsLight"
 
 import CopyToClipboardButton from "@/components/buttons/CopyToClipboardButton"
+import { cn } from "@/lib/utils"
 
 import { CodeBlockProps, HighlightedCodeTextProps } from "./types"
 import { calculateLinesToHighlight, hasTitle } from "./utils"
@@ -12,28 +15,26 @@ import { calculateLinesToHighlight, hasTitle } from "./utils"
 })()
 
 /**
- * This imports the syntax highlighting style for the Swift and GLSLlanguage
+ * @todo Fix highlighted line's background is cut off
  */
-require("prismjs/components/prism-swift")
-require("prismjs/components/prism-glsl")
 
 export const HighlightedCodeText = (props: HighlightedCodeTextProps) => {
     const { codeString, language, highlightLine } = props
+    const { resolvedTheme } = useTheme()
+
+    const preTheme = resolvedTheme === "dark" ? vsDark : vsLight
 
     if (!codeString) return null
 
     return (
-        <Highlight
-            {...defaultProps}
-            theme={{ plain: {}, styles: [] }}
-            code={codeString}
-            // @ts-ignore let glsl be a valid language
-            language={language}
-        >
+        <Highlight {...defaultProps} theme={preTheme} code={codeString} language={language}>
             {({ className, style, tokens, getLineProps, getTokenProps }) => (
                 <Pre className={className} style={style}>
                     {tokens.map((line, index) => {
                         const { className: lineClassName } = getLineProps({
+                            /**
+                             * @todo Remove `highlight-line`
+                             */
                             className: highlightLine && highlightLine(index) ? "highlight-line" : "",
                             key: index,
                             line,
@@ -41,23 +42,17 @@ export const HighlightedCodeText = (props: HighlightedCodeTextProps) => {
 
                         return (
                             <Line
-                                data-testid={highlightLine && highlightLine(index) ? "highlight-line" : "line"}
                                 key={index}
                                 className={lineClassName}
+                                highlighted={highlightLine ? highlightLine(index) : false}
                             >
-                                <LineNo data-testid="number-line">{index + 1}</LineNo>
+                                <LineNumber>{index + 1}</LineNumber>
                                 <LineContent>
                                     {line.map((token, key) => {
-                                        return (
-                                            <span
-                                                data-testid="content-line"
-                                                key={key}
-                                                {...getTokenProps({
-                                                    key,
-                                                    token,
-                                                })}
-                                            />
-                                        )
+                                        const { key: _key, ...tokenProps } = getTokenProps({
+                                            token,
+                                        })
+                                        return <span key={key} {...tokenProps} />
                                     })}
                                 </LineContent>
                             </Line>
@@ -76,120 +71,80 @@ const CodeBlock = (props: CodeBlockProps) => {
     const title = hasTitle(metastring)
 
     return (
-        <Card
-            css={{
-                // Fix the overflow issue when wrapped in text
-                display: "grid",
-                background: "unset",
-                width: "100%",
-
-                "@media(max-width: 750px)": {
-                    width: "100vw",
-                    position: "relative",
-                    left: "50%",
-                    right: "50%",
-                    marginLeft: "-50vw",
-                    marginRight: "-50vw",
-                },
-            }}
-        >
+        <div className="w-full bg-[unset] text-sm rounded-lg border border-border overflow-hidden">
             {title ? (
-                <Card.Header
-                    css={{
-                        padding: "0px 16px",
-                        backgroundColor: "var(--code-snippet-background)",
-                    }}
-                >
-                    <CodeSnippetTitle data-testid="codesnippet-title">{title}</CodeSnippetTitle>
+                <div className="h-12 px-4 bg-muted flex items-center justify-between border-b border-border">
+                    <CodeSnippetTitle>{title}</CodeSnippetTitle>
                     <CopyToClipboardButton title={title} text={codeString} />
-                </Card.Header>
+                </div>
             ) : null}
+
             <HighlightedCodeText codeString={codeString} language={language} highlightLine={highlightLineFn} />
-        </Card>
+        </div>
     )
 }
 
 export default CodeBlock
 
-const Pre = styled("pre", {
-    marginTop: "0",
-    marginBottom: "0",
-    textAlign: "left",
-    padding: "8px 0px",
-    overflow: "auto",
-    borderBottomLeftRadius: "var(--border-radius-2)",
-    borderBottomRightRadius: "var(--border-radius-2)",
-    backgroundColor: "var(--code-snippet-background)",
-    fontFamily: "var(--font-mono)",
-    fontSize: "var(--font-size-1)",
-    lineHeight: "26px",
+function Pre({ children, className, ...props }: React.HTMLAttributes<HTMLPreElement>) {
+    return (
+        <pre className={cn("my-0 text-left py-2 overflow-auto rounded-b-lg font-mono leading-[26px]")} {...props}>
+            {children}
+        </pre>
+    )
+}
 
-    ".token.parameter,.token.imports,.token.plain,.token.comment,.token.prolog,.token.doctype,.token.cdata": {
-        color: "var(--token-comment)",
-    },
+function Line({
+    children,
+    className,
+    highlighted,
+    ...props
+}: React.HTMLAttributes<HTMLDivElement> & {
+    highlighted: boolean
+}) {
+    return (
+        <div
+            className={cn(
+                "flex w-full border-collapse border-l-[3px] border-transparent hover:bg-emphasis",
+                highlighted && "bg-emphasis border-accent",
+                className
+            )}
+            {...props}
+        >
+            {children}
+        </div>
+    )
+}
 
-    ".token.punctuation": {
-        color: "var(--token-punctuation)",
-    },
+function CodeSnippetTitle({ children, className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
+    return (
+        <span className={cn("text-primary", className)} {...props}>
+            {children}
+        </span>
+    )
+}
 
-    ".token.property,.token.tag,.token.boolean,.token.number,.token.constant,.token.symbol,.token.deleted": {
-        color: "var(--token-symbol)",
-    },
+function LineNumber({ children, className, ...props }: React.HTMLAttributes<HTMLSpanElement>) {
+    return (
+        <span
+            aria-hidden="true"
+            className={cn("flex-none w-11 px-3 select-none text-secondary text-right", className)}
+            {...props}
+        >
+            {children}
+        </span>
+    )
+}
 
-    ".token.selector,.token.attr-name,.token.char,.token.builtin,.token.number,.token.string,.token.inserted": {
-        color: "var(--token-selector)",
-    },
+function LineContent({ children, className, ...props }: React.HTMLAttributes<HTMLSpanElement>) {
+    return (
+        <span className={cn("flex flex-1 w-full", className)} {...props}>
+            {children}
+        </span>
+    )
+}
 
-    ".token.operator,.token.entity,.token.url,.language-css .style": {
-        color: "var(--token-operator)",
-    },
-
-    ".token.atrule,.token.attr-value,.token.keyword": {
-        color: "var(--token-keyword)",
-    },
-
-    ".token.function,.token.maybe-class-name,.token.class-name": {
-        color: "var(--token-function)",
-    },
-
-    ".token.regex,.token.important,.token.variable": {
-        color: "var(--token-operator)",
-    },
-})
-
-const Line = styled("div", {
-    display: "table",
-    borderCollapse: "collapse",
-    padding: "0px 14px",
-    borderLeft: "3px solid transparent",
-
-    "&.highlight-line": {
-        background: "var(--emphasis)",
-        borderColor: "var(--accent)",
-    },
-
-    "&:hover": {
-        backgroundColor: "var(--emphasis)",
-    },
-})
-
-const LineNo = styled("div", {
-    width: "45px",
-    padding: "0 12px",
-    userSelect: "none",
-    opacity: "1",
-    color: "var(--text-tertiary)",
-})
-
-const LineContent = styled("span", {
-    display: "table-cell",
-    width: "100%",
-})
-
-const CodeSnippetTitle = styled("p", {
-    marginBlockStart: "0px",
-    fontSize: "var(--font-size-1)",
-    marginBottom: "0px",
-    color: "var(--text-primary)",
-    fontWeight: "500",
-})
+/**
+ * @todo display table / cell
+ * use Github Dark?
+ */
