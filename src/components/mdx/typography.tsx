@@ -64,7 +64,7 @@ export function Anchor({ className, href = "#", children, ...props }: AnchorProp
 type ParagraphProps = React.HTMLAttributes<HTMLParagraphElement>
 export function Paragraph({ className, children, ...props }: ParagraphProps) {
     return (
-        <p className={cn("text-base tracking-wide", className)} {...props}>
+        <p className={cn("text-base", className)} {...props}>
             {children}
         </p>
     )

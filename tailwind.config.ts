@@ -71,6 +71,7 @@ const config = {
             fontFamily: {
                 biotif: ["Biotif", "sans-serif"],
                 noto: ['"Noto Sans"', "sans-serif"],
+                cera: ['"Cera Pro"', "sans-serif"],
             },
         },
     },

@@ -1,5 +1,6 @@
-@import url("importNotoSansFont.css");
-@import url("importBiotifFont.css");
+/* @import url("importNotoSansFont.css"); */
+/* @import url("importBiotifFont.css"); */
+@import url("importCeraProFont.css");
 
 @tailwind base;
 @tailwind components;
@@ -67,7 +68,7 @@
     }
 
     body {
-        @apply min-h-screen flex flex-col bg-background text-content font-biotif break-words;
+        @apply min-h-screen flex flex-col bg-background text-content font-cera break-words;
     }
 
     p {
